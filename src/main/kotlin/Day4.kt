@@ -23,7 +23,7 @@ fun main() {
         val message = input + count
         val hash = md5(message)
 
-        if (hash.substring(0, 5) == "00000") {
+        if (hash.substring(0, 5) == "00000") { // Part 2: hash.substring(0, 6) == "000000"
             searching = false
             println(count)
         }
