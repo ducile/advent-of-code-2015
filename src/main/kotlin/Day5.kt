@@ -67,9 +67,6 @@ fun checkStringNewRules(input : String) : Boolean {
         if (i+1 < input.length) {
             currentPair = input[i].toString() + input[i+1].toString()
 
-            val stringBuilder = StringBuilder(input)
-            val croppedString = stringBuilder.delete(i, i+2).toString()
-
             val string = input.replace(currentPair, "")
             val count = input.length - string.length
 
