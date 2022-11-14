@@ -12,6 +12,21 @@ fun main() {
     }
 
     println(count)
+
+    var counterPart2 = 0
+
+    for (row in input) {
+        if (checkStringNewRules(row)) {
+            counterPart2 ++
+        }
+    }
+
+    println(counterPart2)
+
+    println(checkStringNewRules("qjhvhtzxzqqjkmpb"))
+    println(checkStringNewRules("xxyxx"))
+    println(checkStringNewRules("uurcxstgmygtbstg"))
+    println(checkStringNewRules("ieodomkazucvgmuy"))
 }
 
 fun checkString(input : String) : Boolean {
@@ -32,6 +47,40 @@ fun checkString(input : String) : Boolean {
                 return true
             }
         }
+    }
+
+    return false
+}
+
+fun checkStringNewRules(input : String) : Boolean {
+    var doublePair = false
+    var hasRepeatedLetter = false
+
+    var currentPair = ""
+
+
+    for(i in input.indices) {
+        if (i+2 < input.length && input[i] == input[i+2]) {
+            hasRepeatedLetter = true
+        }
+
+        if (i+1 < input.length) {
+            currentPair = input[i].toString() + input[i+1].toString()
+
+            val stringBuilder = StringBuilder(input)
+            val croppedString = stringBuilder.delete(i, i+2).toString()
+
+            val string = input.replace(currentPair, "")
+            val count = input.length - string.length
+
+            if (count >= 4) {
+                doublePair = true
+            }
+        }
+    }
+
+    if (doublePair && hasRepeatedLetter) {
+        return true
     }
 
     return false
